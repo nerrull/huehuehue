@@ -1,7 +1,5 @@
 
 from qhue import Bridge, QhueException, create_new_username
-from ipywidgets import interact, interactive, fixed
-import ipywidgets as widgets
 import time
 import random
 from collections import deque
@@ -37,6 +35,7 @@ v = random.randint(0,255)
 
 def work_lights():
     for light in hue_order:
+        bridge.lights[str(light)].state(on=True)
         bridge.lights[str(light)].state( effect="none")
         bridge.lights[str(light)].state( sat=15)
         bridge.lights[str(light)].state( ct=315)
