@@ -1,7 +1,7 @@
 
 from qhue import Bridge, QhueException, create_new_username
-from ipywidgets import interact, interactive, fixed
-import ipywidgets as widgets
+#from ipywidgets import interact, interactive, fixed
+#import ipywidgets as widgets
 import time
 import random
 from collections import deque
@@ -9,7 +9,7 @@ from collections import deque
 from algo import Circle
 
 
-BRIDGE_IP=  '192.168.0.108'
+BRIDGE_IP= '192.168.1.69'
 username="BOVln7LRExP7e--M3-R62PcMMyE8DDknQz3zecab"
 
 
@@ -75,13 +75,13 @@ def run_sweep():
 
             t = time.time()
 
-            bridge.lights[light_id].state(xy=[x,y], transitiontime=50)
+            bridge.lights[light_id].state( xy=[x,y], transitiontime=50)
 
             t = time.time() - t
             print(t)
-            time.sleep(0.02)
+            time.sleep(1000)
         print(i)
 
 shutdown()
-work_lights()
-#auto_color_sweep()
+#work_lights()
+auto_color_sweep()
