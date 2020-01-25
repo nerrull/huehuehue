@@ -7,8 +7,8 @@ from collections import deque
 from algo import Circle
 
 
-BRIDGE_IP=  '192.168.0.112'
-username="BOVln7LRExP7e--M3-R62PcMMyE8DDknQz3zecab"
+BRIDGE_IP=  '192.168.0.104'
+username=None
 
 
 hue_order= [5,7,8,6,9,1,3,2,4]
@@ -21,24 +21,32 @@ def setlight(lightid='14', on=True, hue=200, bri=128):
     if on:
         bridge.lights[lightid].state(bri=bri, hue=hue)
 
-if username is None:
-    username = create_new_username(BRIDGE_IP)
-    print("New user: {} . Put this in the username variable above.".format(username))
+bridge = None
+username = create_new_username(BRIDGE_IP)
 
-bridge = Bridge(BRIDGE_IP, username)
-lights = bridge.lights()
-for num, info in lights.items():
-    print("{:16} {}".format(info['name'], num))
+# if username is None:
+#     username = create_new_username(BRIDGE_IP)
+#     print("New user: {} . Put this in the username variable above.".format(username))
+#
+# bridge = Bridge(BRIDGE_IP, username)
+# lights = bridge.lights()
+# for num, info in lights.items():
+#     print("{:16} {}".format(info['name'], num))
+#
+# v = random.randint(0,255)
 
-v = random.randint(0,255)
 
-
-def work_lights():
+def work_lights(bright):
     for light in hue_order:
         bridge.lights[str(light)].state(on=True)
         bridge.lights[str(light)].state( effect="none")
         bridge.lights[str(light)].state( sat=15)
         bridge.lights[str(light)].state( ct=315)
+        bridge.lights[str(light)].state(bri=bright)
+
+def lights_off():
+    for light in hue_order:
+        bridge.lights[str(light)].state(on=False)
 
 
 
@@ -74,5 +82,12 @@ def run_sweep():
             time.sleep(0.02)
         print(i)
 
-work_lights()
+# work_lights(127)
+
+#work_lights(255)
+
+# lights_off()
+
 #auto_color_sweep()
+
+#create_new_username(BRIDGE_IP)
