@@ -22,6 +22,7 @@ app.layout = html.Div([
     )
 ])
 
+
 @app.callback(
     Output('color-log', "value"),
     [Input('color-temp-slider', 'value')])
